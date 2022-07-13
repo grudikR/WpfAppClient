@@ -1,0 +1,50 @@
+﻿<Window x:Class="WpfAppClient.TaskItemWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppClient"
+        mc:Ignorable="d"
+        Title="TaskItemWindow" Height="497" Width="865"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,0">
+        <Label Content="Ви працюєте з блоком" HorizontalAlignment="Left" Height="28" Margin="27,16,0,0" VerticalAlignment="Top" Width="166"/>
+        <TextBox x:Name="TextBoxCategoryName" IsReadOnly="True" HorizontalAlignment="Left" Height="28" Margin="211,16,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="233"/>
+        <TextBox x:Name="TextBoxCategoryID" HorizontalAlignment="Left" Height="28" Margin="466,16,0,0" TextWrapping="Wrap" Text="TextBox" Visibility="Hidden" VerticalAlignment="Top" Width="233"/>
+        <DataGrid x:Name="dgTaskItems" HorizontalAlignment="Left" Height="184" Margin="10,211,0,0" VerticalAlignment="Top" Width="742" 
+                  ItemsSource="{Binding}"
+                  CanUserAddRows="False"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=Id}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Назва завдання" Binding="{Binding Path=Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Чи виконано" Binding="{Binding Path=IsDone}"></DataGridTextColumn>
+
+                <DataGridTemplateColumn Header="Редагувати">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="dgEditTaskItemClick">Редагувати</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Видалити">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="dgDeleteTaskItemClick">Видалити</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Name="btnToMainWindows" Content="На головну" HorizontalAlignment="Left" Margin="10,408,0,0" VerticalAlignment="Top" Height="39" Width="157" Click="btnToMainWindows_Click">
+        </Button>
+        <Label Content="Назва завдання" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top" Height="25" Width="100"/>
+        <Label Content="Чи виконано" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Height="25" Width="100"/>
+        <CheckBox x:Name="CheckBoxIsDone" Content="Виконано" HorizontalAlignment="Left" Margin="122,93,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextBoxTaskItemName" HorizontalAlignment="Left" Height="29" Margin="122,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="233"/>
+        <TextBox x:Name="TextBoxTaskItemID" IsReadOnly="True" HorizontalAlignment="Left" Height="29" Margin="400,63,0,0" Visibility="Hidden" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="233"/>
+        <Button x:Name="btnSaveTaskItem" Content="Зберегти" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Height="50" Width="191" Click="btnSaveTaskItem_Click" />
+
+    </Grid>
+</Window>

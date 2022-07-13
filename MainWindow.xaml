@@ -1,0 +1,52 @@
+﻿<Window x:Class="WpfAppClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppClient"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Content="Назва блоку" HorizontalAlignment="Left" Margin="17,23,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextBoxCategoryName" HorizontalAlignment="Left" Margin="133,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnAddCategory" Content="Зберегти" HorizontalAlignment="Left" Height="26" Margin="277,27,0,0" VerticalAlignment="Top" Width="149" Click="btnAddCategory_Click"/>
+        <DataGrid x:Name="dgCategories" HorizontalAlignment="Left" Height="184" Margin="10,138,0,0" VerticalAlignment="Top" Width="742" 
+                  ItemsSource="{Binding}"
+                  CanUserAddRows="False"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Назва блоку" Binding="{Binding Path=Name}"></DataGridTextColumn>
+                
+                <DataGridTemplateColumn Header="Редагувати">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="dgEditCategoryClick">Редагувати</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Видалити">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="dgDeleteCategoryClick">Видалити</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Вибір">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="dgChooseCategoryClick">Вибрати</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnShowCategories" Content="Показати блоки" HorizontalAlignment="Left" Height="41" Margin="10,92,0,0" VerticalAlignment="Top" Width="149" Click="btnShowCategories_Click"/>
+        <TextBox x:Name="TextBoxCategoryID" Visibility="Hidden" HorizontalAlignment="Left" Margin="133,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+
+    </Grid>
+</Window>
